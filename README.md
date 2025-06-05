@@ -16,6 +16,24 @@ This work consists of two tasks focused on applying key programming principles i
 2. **Task 2 – SOLID Principles:**
     Redesign a simple command-line library management program to follow SOLID principles. The task involves introducing appropriate abstractions and interfaces to make the system more modular, extensible, and maintainable.
 
+
+### Table of Contents <!-- omit in toc -->
+- [Project Setup \& Run Instructions](#project-setup--run-instructions)
+  - [Prerequisites](#prerequisites)
+  - [Setting Up the Development Environment](#setting-up-the-development-environment)
+  - [Running the Code](#running-the-code)
+- [Task requirements](#task-requirements)
+  - [Task 1: Factory Pattern](#task-1-factory-pattern)
+    - [Task description](#task-description)
+    - [Steps for Task 1](#steps-for-task-1)
+    - [Expected Result](#expected-result)
+  - [Task 2: SOLID Principles](#task-2-solid-principles)
+    - [Task description](#task-description-1)
+    - [Steps for Task 2](#steps-for-task-2)
+- [Task Solution](#task-solution)
+    - [Task 1 solution](#task-1-solution)
+    - [Task 2 solution](#task-2-solution)
+
 ### Project Setup & Run Instructions
 
 #### Prerequisites
