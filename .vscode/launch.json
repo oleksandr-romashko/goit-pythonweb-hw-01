@@ -1,0 +1,27 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run task_1",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/goit_pythonweb_hw_01/task_1/main.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src"
+            }
+        },
+        {
+            "name": "Run task_2",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/goit_pythonweb_hw_01/task_2/main.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src"
+            }
+        }
+    ]
+}
