@@ -16,11 +16,6 @@ This work consists of two tasks focused on applying key programming principles i
 2. **Task 2 – SOLID Principles:**
     Redesign a simple command-line library management program to follow SOLID principles. The task involves introducing appropriate abstractions and interfaces to make the system more modular, extensible, and maintainable.
 
-Both tasks require:
-* The use of **type hints** for type safety.
-* **INFO-level logging** instead of print statements.
-* Code formatting with **Black**.
-
 ### Project Setup & Run Instructions
 
 #### Prerequisites
@@ -78,8 +73,14 @@ python src/task_2/main.py
 ```
 
 
-
 ### Task requirements
+
+Both tasks require:
+
+* The use of **type hints** for type safety.
+* **INFO-level logging** instead of print statements.
+* Code formatting with **Black**.
+
 
 #### Task 1: Factory Pattern
 
