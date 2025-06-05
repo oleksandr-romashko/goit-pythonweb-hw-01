@@ -22,6 +22,7 @@ This work consists of two tasks focused on applying key programming principles i
   - [Prerequisites](#prerequisites)
   - [Setting Up the Development Environment](#setting-up-the-development-environment)
   - [Running the Code](#running-the-code)
+  - [VS Code Debugging (Optional)](#vs-code-debugging-optional)
 - [Task requirements](#task-requirements)
   - [Task 1: Factory Pattern](#task-1-factory-pattern)
     - [Task description](#task-description)
@@ -36,14 +37,16 @@ This work consists of two tasks focused on applying key programming principles i
 
 ### Project Setup & Run Instructions
 
+This guide will help you set up the development environment and run tasks from the project.
+
 #### Prerequisites
 
 Before starting, ensure that you have the following installed:
 
-* **Python 3.10+** (tested with 3.12.3)
-* **pip** (Python package manager)
+* **[Python 3.10+](https://www.python.org/downloads/)** (tested with 3.12.3)
+* **[Poetry](https://python-poetry.org/docs/#installation)**
 * (Optional) Git for cloning the repo
-* (Optional) VS Code with Python and Black extensions
+* (Optional) VS Code with the Python and Black extension
 
 #### Setting Up the Development Environment
 
@@ -56,39 +59,47 @@ Before starting, ensure that you have the following installed:
     cd goit-pythonweb-hw-01
     ```
 
-    Or download the ZIP archive from [GitHub Repository](https://github.com/oleksandr-romashko/goit-pythonweb-hw-01) and extract it.
+    or download the ZIP archive from [GitHub Repository](https://github.com/oleksandr-romashko/goit-pythonweb-hw-01) and extract it.
 
-2. **Create a Virtual Environment**
-   
-    **Linux/macOS**
+2. **Install Dependencies**
 
     ```bash
-    python3 -m venv .venv
-    source .venv/bin/activate
-    pip install -r requirements.txt
+    poetry install
     ```
 
-    **Windows**
+3. **Install Git Hooks with Pre-commit**
 
-    ```cmd
-    python -m venv .venv
-    .venv\Scripts\activate
-    pip install -r requirements.txt
+    Run this to enable automatic formatting and checks on each commit:
+
+    ```bash
+    poetry run pre-commit install
     ```
+
+    This enables checks like:
+    * Auto-formatting with **Black**
+    * Docstring-first enforcement
+    * Trailing whitespace & EOL fixer
+
 
 #### Running the Code
 
 **Task 1 (Factory Pattern)**
 
 ```bash
-python src/task_1/main.py
+poetry run python src/goit_pythonweb_hw_01/task_1/main.py
 ```
 
 **Task 2 (SOLID Principles)**
 
-```cmd
-python src/task_2/main.py
+```bash
+poetry run python src/goit_pythonweb_hw_01/task_2/main.py
 ```
+
+#### VS Code Debugging (Optional)
+
+VS Code debug configurations are preconfigured in the [.vscode/](./.vscode/) directory. If you use VS Code, open the project and choose the appropriate task to run (`Run task 1` or `Run task 2`) from the debug panel.
+
+You can customize these further as needed.
 
 
 ### Task requirements
@@ -260,7 +271,7 @@ if __name__ == "__main__":
 ##### Task 1 solution
 
 Solution for this task is located in the following file:
-* [task_1/main.py](./src/task_1/main.py) 
+* [task_1/main.py](./src/task_1/main.py)
 
 ![UML Class Diagram](./assets/uml/task_1.jpg)
 
@@ -271,7 +282,7 @@ Application screenshot:
 ##### Task 2 solution
 
 Solution for this task is located in the following file:
-* [task_2/main.py](./src/task_2/main.py) 
+* [task_2/main.py](./src/task_2/main.py)
 
 ![UML Class Diagram](./assets/uml/task_2.jpg)
 
