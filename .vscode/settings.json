@@ -2,5 +2,11 @@
     "python.analysis.extraPaths": [
         "${workspaceFolder}/src"
     ],
-    "python.terminal.activateEnvironment": true
+    "python.terminal.activateEnvironment": true,
+    "cSpell.words": [
+        "goit",
+        "levelname",
+        "Liskov",
+        "pythonweb"
+    ]
 }
