@@ -271,7 +271,7 @@ if __name__ == "__main__":
 ##### Task 1 solution
 
 Solution for this task is located in the following file:
-* [task_1/main.py](./src/task_1/main.py)
+* [src/goit_pythonweb_hw_01/task_1/main.py](./src/goit_pythonweb_hw_01/task_1/main.py) - developed solution for task 1.
 
 ![UML Class Diagram](./assets/uml/task_1.jpg)
 
@@ -282,7 +282,7 @@ Application screenshot:
 ##### Task 2 solution
 
 Solution for this task is located in the following file:
-* [task_2/main.py](./src/task_2/main.py)
+[src/goit_pythonweb_hw_01/task_2/main.py](./src/goit_pythonweb_hw_01/task_2/main.py) - developed solution for task 2.
 
 ![UML Class Diagram](./assets/uml/task_2.jpg)
 

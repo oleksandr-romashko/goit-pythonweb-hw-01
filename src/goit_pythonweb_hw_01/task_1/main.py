@@ -26,17 +26,17 @@ class Vehicle(ABC):
             model: The model of the vehicle.
             region_spec: The regional specification (e.g., 'US Spec', 'EU Spec').
         """
-        self.make = make
-        self.model = model
-        self.region_spec = region_spec
+        self._make = make
+        self._model = model
+        self._region_spec = region_spec
 
     def __str__(self) -> str:
-        return f"{self.make} {self.model} ({self.region_spec})"
+        return f"{self._make} {self._model} ({self._region_spec})"
 
     def __repr__(self) -> str:
         return (
             f"{self.__class__.__name__}"
-            f"(make={self.make!r}, model={self.model!r}, region_spec={self.region_spec!r})"
+            f"(make={self._make!r}, model={self._model!r}, region_spec={self._region_spec!r})"
         )
 
     @abstractmethod
@@ -55,7 +55,7 @@ class VehicleFactory(ABC):
         Args:
             region_spec: A string indicating the regional spec (e.g., 'US Spec').
         """
-        self.region_spec = region_spec
+        self._region_spec = region_spec
 
     @abstractmethod
     def create_car(self, make: str, model: str) -> Vehicle:
@@ -92,11 +92,11 @@ class USVehicleFactory(VehicleFactory):
 
     def create_car(self, make: str, model: str) -> Vehicle:
         """Create a US-spec car."""
-        return Car(make, model, self.region_spec)
+        return Car(make, model, self._region_spec)
 
     def create_motorcycle(self, make: str, model: str) -> Vehicle:
         """Create a US-spec motorcycle."""
-        return Motorcycle(make, model, self.region_spec)
+        return Motorcycle(make, model, self._region_spec)
 
 
 class EUVehicleFactory(VehicleFactory):
@@ -107,11 +107,11 @@ class EUVehicleFactory(VehicleFactory):
 
     def create_car(self, make: str, model: str) -> Vehicle:
         """Create an EU-spec car."""
-        return Car(make, model, self.region_spec)
+        return Car(make, model, self._region_spec)
 
     def create_motorcycle(self, make: str, model: str) -> Vehicle:
         """Create an EU-spec motorcycle."""
-        return Motorcycle(make, model, self.region_spec)
+        return Motorcycle(make, model, self._region_spec)
 
 
 def main():
