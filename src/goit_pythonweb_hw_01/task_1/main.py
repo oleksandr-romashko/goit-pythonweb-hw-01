@@ -114,7 +114,7 @@ class EUVehicleFactory(VehicleFactory):
         return Motorcycle(make, model, self._region_spec)
 
 
-def main():
+def main() -> None:
     """Run example usage of the abstract factory pattern for vehicles."""
     setup_logging()
 
