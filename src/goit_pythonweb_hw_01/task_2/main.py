@@ -15,9 +15,10 @@ logger = logging.getLogger("goit_pythonweb_hw_01.task_2")
 # TODO: 5. Щоб виконати принцип інверсії залежностей (DIP), зробіть так, щоб класи вищого рівня, такі як LibraryManager, залежали від абстракцій (інтерфейсів), а не від конкретних реалізацій класів.
 
 
-# Note: Data validation (e.g. int parse for year) and additional messages are deliberately
-#       omitted as this task focus is solely on SOLID principles and additional implementation
-#       (which is usual part of regular production code) will bring additional noise to the code.
+# Note: Data validation (e.g. int parse for year), additional messages, KeyboardInterrupt error
+#       handling, etc. are deliberately omitted in this task as this task focuses solely on SOLID
+#       principles and such additional implementation (which are usual part of regular production code)
+#       will bring additional out of scope noise to the code.
 #
 # Subtask 1: Follows SRP (Single Responsibility Principle):
 #            - Each class has a clear, single responsibility:
@@ -33,6 +34,10 @@ logger = logging.getLogger("goit_pythonweb_hw_01.task_2")
 #            - String formatting of books is encapsulated in the Book class, making the system
 #              open for formatting changes without modifying Library or Formatter.
 #            - Promotes extensibility through abstraction and composition.
+# Subtask 3: Follows LSP (Liskov Substitution Principle):
+#            - By inheriting from AbstractLibrary, the Library class guarantees that it can be
+#              substituted wherever the AbstractLibrary interface is expected without breaking
+#              the program's logic.
 
 
 @dataclass(frozen=True)
@@ -60,18 +65,15 @@ class AbstractStorage(ABC):
 
 
 class LibraryStorage(AbstractStorage):
-    def __init__(self):
+    def __init__(self) -> None:
         self.items: List[Book] = []
 
     def add_item(self, item: Book) -> None:
-        if not item in self.items:
+        if item not in self.items:
             self.items.append(item)
 
     def remove_item_by_title(self, title: str) -> None:
-        for book in self.items:
-            if book.title == title:
-                self.items.remove(book)
-                break
+        self.items = [book for book in self.items if book.title != title]
 
     def list_items(self) -> List[Book]:
         return self.items.copy()
@@ -79,7 +81,7 @@ class LibraryStorage(AbstractStorage):
 
 class AbstractFormatter(ABC):
     @abstractmethod
-    def log_items(self, items: List[Any]):
+    def log_items(self, items: List[Any]) -> None:
         pass
 
 
@@ -89,13 +91,24 @@ class LibraryFormatter(AbstractFormatter):
             logger.info("Book: %s", book)
 
 
-class Library:
-    book_storage: AbstractStorage
-    formatter: AbstractFormatter
+class AbstractLibrary(ABC):
+    @abstractmethod
+    def add_book(self, title: str, author: str, year: str) -> None:
+        pass
 
+    @abstractmethod
+    def remove_book(self, title: str) -> None:
+        pass
+
+    @abstractmethod
+    def show_books(self) -> None:
+        pass
+
+
+class Library(AbstractLibrary):
     def __init__(self) -> None:
-        self.book_storage = LibraryStorage()
-        self.formatter = LibraryFormatter()
+        self.book_storage: AbstractStorage = LibraryStorage()
+        self.formatter: AbstractFormatter = LibraryFormatter()
 
     def add_book(self, title: str, author: str, year: str) -> None:
         book = Book(title, author, year)
@@ -109,29 +122,30 @@ class Library:
         self.formatter.log_items(books)
 
 
-def main():
+def main() -> None:
     """Run example usage of the Library Managements System."""
     setup_logging()
 
-    library = Library()
+    library: AbstractLibrary = Library()
 
     while True:
         command = input("Enter command (add, remove, show, exit): ").strip().lower()
 
-        if command == "add":
-            title = input("Enter book title: ").strip()
-            author = input("Enter book author: ").strip()
-            year = input("Enter book year: ").strip()
-            library.add_book(title, author, year)
-        elif command == "remove":
-            title = input("Enter book title to remove: ").strip()
-            library.remove_book(title)
-        elif command == "show":
-            library.show_books()
-        elif command == "exit":
-            break
-        else:
-            print("Invalid command. Please try again.")
+        match command:
+            case "add":
+                title = input("Enter book title: ").strip()
+                author = input("Enter book author: ").strip()
+                year = input("Enter book year: ").strip()
+                library.add_book(title, author, year)
+            case "remove":
+                title = input("Enter book title to remove: ").strip()
+                library.remove_book(title)
+            case "show":
+                library.show_books()
+            case "exit":
+                break
+            case _:
+                print("Invalid command. Please try again.")
 
 
 if __name__ == "__main__":
