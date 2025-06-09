@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-from typing import Any, List
 from dataclasses import dataclass
+from typing import Any, List
 import logging
 
 from goit_pythonweb_hw_01.utils.logging_config import setup_logging
@@ -14,30 +14,37 @@ logger = logging.getLogger("goit_pythonweb_hw_01.task_2")
 # TODO: 4. Щоб виконати принцип розділення інтерфейсів (ISP), використовуйте інтерфейс LibraryInterface для чіткої специфікації методів, які необхідні для роботи з бібліотекою library.
 # TODO: 5. Щоб виконати принцип інверсії залежностей (DIP), зробіть так, щоб класи вищого рівня, такі як LibraryManager, залежали від абстракцій (інтерфейсів), а не від конкретних реалізацій класів.
 
-
-# Note: Data validation (e.g. int parse for year), additional messages, KeyboardInterrupt error
-#       handling, etc. are deliberately omitted in this task as this task focuses solely on SOLID
-#       principles and such additional implementation (which are usual part of regular production code)
-#       will bring additional out of scope noise to the code.
+# Note: This implementation deliberately omits production-level concerns such as data validation
+#       (e.g. integer parsing for year), error handling (e.g. KeyboardInterrupt), and user messaging
+#       (e.g. absent items, duplications, etc.).
+#       These concerns, while important in real-world applications, are excluded here to maintain
+#       focus on demonstrating the SOLID design principles without introducing unrelated complexity.
 #
-# Subtask 1: Follows SRP (Single Responsibility Principle):
+# Subtask 1: Follow SRP (Single Responsibility Principle):
 #            - Each class has a clear, single responsibility:
 #                - Book: encapsulates book data and string representation.
 #                - LibraryStorage: manages book collection (add, remove, list).
 #                - LibraryFormatter: responsible for formatting/logging book output.
 #                - Library: coordinates operations using composition, delegates tasks.
 #            - Responsibilities are well-separated, promoting maintainability and clarity.
-# Subtask 2: Follows OCP (Open/Closed Principle):
+# Subtask 2: Follow OCP (Open/Closed Principle):
 #            - Library depends on abstract types (AbstractLibraryStorage), not concrete ones.
-#            - New storage strategies (e.g., database, file) can be added without modifying the Library class.
+#            - New storage strategies (e.g., database, file) can be added without modifying
+#              the Library class.
 #            - Formatter can be extended (e.g., JSONFormatter) without changing core logic.
 #            - String formatting of books is encapsulated in the Book class, making the system
 #              open for formatting changes without modifying Library or Formatter.
 #            - Promotes extensibility through abstraction and composition.
-# Subtask 3: Follows LSP (Liskov Substitution Principle):
+# Subtask 3: Follow LSP (Liskov Substitution Principle):
 #            - By inheriting from AbstractLibrary, the Library class guarantees that it can be
 #              substituted wherever the AbstractLibrary interface is expected without breaking
 #              the program's logic.
+# Subtask 4: Follow ISP (Interface Segregation Principle):
+#            - Interfaces (abstract base classes) are designed with narrow scopes, ensuring classes only
+#              implement methods relevant to their purpose.
+#            - AbstractStorage and AbstractFormatter isolate storage and formatting responsibilities,
+#              avoiding bloated, general-purpose interfaces.
+#            - This enables clear contracts and easier testing, substitution, or extension for each concern.
 
 
 @dataclass(frozen=True)
